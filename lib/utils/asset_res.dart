@@ -16,6 +16,4 @@ class AssertRes {
   static const hintImage = "asserts/images/banner.png";
   static const puzzle1Image = "asserts/images/1.png";
   static const numberImage = "asserts/images/number.png";
-  static const winnerFrame = "asserts/images/ic_win_frm.png";
-  static const mainMenuImage = "asserts/images/main-menu.png";
 }
