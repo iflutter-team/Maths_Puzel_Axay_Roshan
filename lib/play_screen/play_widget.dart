@@ -20,7 +20,23 @@ Widget playScreenWidget() {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Image.asset(AssertRes.nextImage, scale: 20),
-            Image.asset(AssertRes.levelImage, scale: 10),
+            Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                        AssertRes.levelImage,
+                      ),
+                      scale: 8)),
+              child: Text(
+                "LEVEL 1",
+                style: TextStyle(
+                  fontFamily: "chalk",
+                  color: const Color(0xff7f181b),
+                  fontSize: Get.width * 0.07,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
             Image.asset(AssertRes.hintImage, scale: 15),
           ],
         ),
@@ -84,7 +100,7 @@ Widget playScreenWidget() {
           children: [
             Stack(
               children: [
-                Image.asset(AssertRes.levelImage, scale: 9),
+                Image.asset(AssertRes.submitImage, scale: 3.5),
                 // const Text(StringRes.submitText),
               ],
             ),

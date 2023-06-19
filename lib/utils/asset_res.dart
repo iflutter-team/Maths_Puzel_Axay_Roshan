@@ -13,7 +13,9 @@ class AssertRes {
   static const nextImage = "asserts/images/next.png";
   static const backImage = "asserts/images/back.png";
   static const levelImage = "asserts/images/name.png";
-  static const hintImage = "asserts/images/banner.png";
+  static const hintImage = "asserts/images/hint.png";
+  static const loseStarImage = "asserts/images/ic_loss_star_big1.png";
   static const puzzle1Image = "asserts/images/1.png";
   static const numberImage = "asserts/images/number.png";
+  static const submitImage = "asserts/images/submit.png";
 }

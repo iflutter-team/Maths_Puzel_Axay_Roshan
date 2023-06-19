@@ -1,9 +1,10 @@
+import 'package:demo_math_puzzel/play_screen/play_screen.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LevelController extends GetxController {
   SharedPreferences? ps;
-  int level2 = 0;
+  static int level2 = 0;
 
   static List<String> wList = List.filled(75, "pending");
   static List<String> sList = List.filled(75, "pending");
@@ -33,5 +34,12 @@ class LevelController extends GetxController {
     super.onInit();
 
     get();
+  }
+
+  void levelToPlayScreen() {
+    Get.to(
+      () => const Playscreen(),
+    );
+    update(['play']);
   }
 }
