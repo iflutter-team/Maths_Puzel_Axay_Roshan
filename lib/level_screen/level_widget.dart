@@ -6,7 +6,7 @@ Widget levelBg() {
   return Container(
     height: Get.height,
     width: Get.width,
-    decoration: BoxDecoration(
+    decoration: const BoxDecoration(
       image: DecorationImage(
         image: AssetImage(
           AssertRes.backGroundImage,
@@ -17,8 +17,9 @@ Widget levelBg() {
     child: Column(
       children: [
         const SizedBox(height: 50),
-        Image(
-          image: AssetImage(AssertRes.pImage),
+        Image.asset(
+          AssertRes.pImage,
+          scale: 2.5,
         ),
         SizedBox(
           height: Get.height * 0.75,
@@ -33,21 +34,22 @@ Widget levelBg() {
             itemCount: 75,
             itemBuilder: (context, index) {
               return Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(AssertRes.boxOpen),
-                    ),
+                alignment: Alignment.center,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(AssertRes.boxOpen),
                   ),
-                  child: Text(
-                    "${index + 1}",
-                    style: TextStyle(
-                      fontFamily: "chalk",
-                      color: Colors.white,
-                      fontSize: Get.width * 0.07,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ));
+                ),
+                child: Text(
+                  "${index + 1}",
+                  style: TextStyle(
+                    fontFamily: "chalk",
+                    color: Colors.white,
+                    fontSize: Get.width * 0.07,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              );
             },
           ),
         ),

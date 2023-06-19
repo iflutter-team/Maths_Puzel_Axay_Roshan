@@ -30,7 +30,7 @@ import 'package:get/get.dart';
 }*/
 class HomePageController extends GetxController {
   void startToLevel() {
-    Get.to(() => const LevelScreen());
+    Get.to(() => LevelScreen());
     update(['start']);
   }
 }

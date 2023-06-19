@@ -1,5 +1,5 @@
 class AssertRes {
-  static const backGroundImage = "asserts/images/1bg.jpg";
+  static const backGroundImage = "asserts/images/download.jpg";
   static const mathTextImage = "asserts/images/math.png";
   static const startTextImage = "asserts/images/start.png";
   static const puzzleTextImage = "asserts/images/p.png";

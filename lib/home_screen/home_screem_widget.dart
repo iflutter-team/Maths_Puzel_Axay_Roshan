@@ -86,22 +86,19 @@ Widget backGroundImage(
                 border: Border.all(color: Colors.white, width: 3),
               ),
               child: InkWell(
-                onTap: () => Get.dialog(AlertDialog(
-                  title: const Text(
-                    StringRes.privacyPolicy,
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: Colors.orangeAccent,
-                      fontFamily: 'chalk',
-                      fontWeight: FontWeight.bold,
+                onTap: () => Get.dialog(
+                  const AlertDialog(
+                    title: Text(
+                      StringRes.privacyPolicy,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.orangeAccent,
+                        fontFamily: 'chalk',
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                  actions: [
-                    Column(
-                      children: [],
-                    )
-                  ],
-                )),
+                ),
                 child: const Text(
                   StringRes.privacyPolicy,
                   style: TextStyle(
