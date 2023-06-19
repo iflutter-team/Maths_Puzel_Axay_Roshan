@@ -1,4 +1,5 @@
 import 'package:demo_math_puzzel/level_screen/level_screen.dart';
+import 'package:demo_math_puzzel/play_screen/play_screen.dart';
 import 'package:get/get.dart';
 
 /*class HomePageController extends GetxController {
@@ -29,8 +30,8 @@ import 'package:get/get.dart';
   }
 }*/
 class HomePageController extends GetxController {
-  void startToLevel() {
-    Get.to(() => LevelScreen());
+  void startToPlay() {
+    Get.to(() => const Playscreen());
     update(['start']);
   }
 }

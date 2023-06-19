@@ -36,7 +36,7 @@ Widget backGroundImage(
           builder: (controller) {
             return InkWell(
               onTap: () {
-                controller.startToLevel();
+                controller.startToPlay();
               },
               child: Image.asset(
                 AssertRes.startTextImage,
