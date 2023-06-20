@@ -8,7 +8,7 @@ import 'splesh_screen/splesh_screen.dart';
 main() {
   runApp(
     GetMaterialApp(
-      home: const Playscreen(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
