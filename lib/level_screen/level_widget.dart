@@ -30,10 +30,11 @@ Widget levelBg() {
           // color: Colors.orange,
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 5,
-                mainAxisSpacing: 20,
-                childAspectRatio: 1.6),
+              crossAxisCount: 3,
+              crossAxisSpacing: 5,
+              mainAxisSpacing: 20,
+              childAspectRatio: 1.2,
+            ),
             itemCount: 75,
             itemBuilder: (context, index) {
               if (LevelController.wList[index] == "yes") {

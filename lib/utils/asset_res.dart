@@ -18,4 +18,7 @@ class AssertRes {
   static const puzzle1Image = "asserts/images/1.png";
   static const numberImage = "asserts/images/number.png";
   static const submitImage = "asserts/images/submit.png";
+  static const mainMenuImage = "asserts/images/main-menu.png";
+  static const winnerFrameImage = "asserts/images/ic_win_frm.png";
+  static const nextLevelImage = "asserts/images/nextlevel.png";
 }
