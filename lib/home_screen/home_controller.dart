@@ -34,4 +34,9 @@ class HomePageController extends GetxController {
     Get.to(() => const Playscreen());
     update(['start']);
   }
+
+  void startToPuzzel() {
+    Get.to(() => const LevelScreen());
+    update(['puzzel']);
+  }
 }

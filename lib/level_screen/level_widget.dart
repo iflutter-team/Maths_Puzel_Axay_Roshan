@@ -41,32 +41,35 @@ Widget levelBg() {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.only(right: 6),
                   decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(AssertRes.boxOpen))),
+                    image: DecorationImage(
+                      image: AssetImage(AssertRes.boxOpen),
+                    ),
+                  ),
                   child: InkWell(
                     onTap: () {},
                     child: Container(
-                        height: double.infinity,
-                        width: double.infinity,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.only(
-                          left: 5,
-                          top: 10,
+                      height: double.infinity,
+                      width: double.infinity,
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.only(
+                        left: 5,
+                        top: 10,
+                      ),
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                        image: AssetImage(AssertRes.loseStarImage),
+                        fit: BoxFit.fill,
+                      )),
+                      child: Text(
+                        "${index + 1}",
+                        style: TextStyle(
+                          fontFamily: "chalk",
+                          color: const Color(0xff7f181b),
+                          fontSize: Get.width * 0.07,
+                          fontWeight: FontWeight.bold,
                         ),
-                        decoration: const BoxDecoration(
-                            image: DecorationImage(
-                          image: AssetImage(AssertRes.loseStarImage),
-                          fit: BoxFit.fill,
-                        )),
-                        child: Text(
-                          "${index + 1}",
-                          style: TextStyle(
-                            fontFamily: "chalk",
-                            color: const Color(0xff7f181b),
-                            fontSize: Get.width * 0.07,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )),
+                      ),
+                    ),
                   ),
                 );
               }

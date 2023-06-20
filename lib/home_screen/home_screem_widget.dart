@@ -35,9 +35,7 @@ Widget backGroundImage(
           id: 'start',
           builder: (controller) {
             return InkWell(
-              onTap: () {
-                controller.startToPlay();
-              },
+              onTap: () => controller.startToPlay(),
               child: Image.asset(
                 AssertRes.startTextImage,
                 scale: 3.2,
@@ -48,10 +46,17 @@ Widget backGroundImage(
         SizedBox(
           height: Get.height * 0.020,
         ),
-        Image.asset(
-          AssertRes.puzzleTextImage,
-          scale: 3.2,
-        ),
+        GetBuilder<HomePageController>(
+            id: 'puzzel',
+            builder: (controller) {
+              return InkWell(
+                onTap: () => controller.startToPuzzel(),
+                child: Image.asset(
+                  AssertRes.puzzleTextImage,
+                  scale: 3.2,
+                ),
+              );
+            }),
         SizedBox(
           height: Get.height * 0.020,
         ),

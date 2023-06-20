@@ -21,23 +21,29 @@ Widget playScreenWidget() {
           children: [
             Image.asset(AssertRes.nextImage, scale: 20),
             Container(
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(
-                        AssertRes.levelImage,
-                      ),
-                      scale: 8)),
-              child: Text(
-                "LEVEL 1",
-                style: TextStyle(
-                  fontFamily: "chalk",
-                  color: const Color(0xff7f181b),
-                  fontSize: Get.width * 0.07,
-                  fontWeight: FontWeight.bold,
+              height: 50,
+              width: 150,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    AssertRes.levelImage,
+                  ),
+                  fit: BoxFit.fill,
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  "LEVEL 1",
+                  style: TextStyle(
+                    fontFamily: "chalk",
+                    color: const Color(0xff7f181b),
+                    fontSize: Get.width * 0.07,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
-            Image.asset(AssertRes.hintImage, scale: 15),
+            Image.asset(AssertRes.hintImage, scale: 20),
           ],
         ),
         SizedBox(height: Get.height * 0.10),
@@ -95,17 +101,38 @@ Widget playScreenWidget() {
           ],
         ),
         SizedBox(height: Get.height * 0.02),
-        Row(
+        /*Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Stack(
-              children: [
-                Image.asset(AssertRes.submitImage, scale: 3.5),
-                // const Text(StringRes.submitText),
-              ],
-            ),
+            Image.asset(AssertRes.submitImage, scale: 3.5),
           ],
-        ),
+        ),*/
+        /*  Expanded(
+          child: InkWell(
+            onTap: () async {
+              if (text == DataPage.anse[widget.index]) {
+                await ps!.setString("win${widget.index}", "yes");
+                await ps!.setString("skip${widget.index}", "no");
+                widget.index++;
+                widget.index > level1
+                    ? ps!.setInt("level", widget.index)
+                    : null;
+                level1 = ps!.getInt("level") ?? 0;
+                print(">>>>>>>>>>ok>>>>$level1");
+                // await ps!.setInt("level", widget.index);
+                setState(() {});
+                // Get.to(WinPage);
+              }
+            },
+            child: Container(
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("Pic/submit.png"),
+                      fit: BoxFit.fitHeight)),
+            ),
+          ),
+
+         )*/
       ],
     ),
   );
