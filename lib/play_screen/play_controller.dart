@@ -5,13 +5,13 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PlayScreenController extends GetxController {
-  // String? text = "";
+  String? text = "";
   String val = '';
   static late int index;
 
-  // printValue(int t) {
-  //   text = ("$text$t");
-  // }
+  printValue(int t) {
+    text = ("$text$t");
+  }
 
   void numberTap(int value) {
     val = val + value.toString();
@@ -21,11 +21,27 @@ class PlayScreenController extends GetxController {
   int level1 = 0;
   bool ad = false;
 
+  // final controller = ConfettiController();
+  // bool isPlaying = false;
   SharedPreferences? puzzleGame;
 
   get() async {
     puzzleGame = await SharedPreferences.getInstance();
     level1 = puzzleGame!.getInt("level") ?? 0;
+  }
+
+  // void dispose() {
+  //   controller.dispose();
+  //   super.dispose();
+  // }
+
+  void initState() {
+    get();
+    // controller.play();
+    // ConfettiWidget(
+    //   confettiController: controller,
+    //   shouldLoop: true,
+    // );
   }
 
   nextLevelFunction() async {

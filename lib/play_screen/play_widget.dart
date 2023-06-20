@@ -21,16 +21,7 @@ Widget playScreenWidget() {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            GetBuilder<PlayScreenController>(
-              id: 'nextLevel',
-              builder: (controller) => InkWell(
-                onTap: () => controller.nextLevelFunction(),
-                child: Image.asset(
-                  AssertRes.nextImage,
-                  scale: 20,
-                ),
-              ),
-            ),
+            Image.asset(AssertRes.hintImage, scale: 22),
             Container(
               height: 50,
               width: 150,
@@ -54,7 +45,16 @@ Widget playScreenWidget() {
                 ),
               ),
             ),
-            Image.asset(AssertRes.hintImage, scale: 21),
+            GetBuilder<PlayScreenController>(
+              id: 'nextLevel',
+              builder: (controller) => InkWell(
+                onTap: () => controller.nextLevelFunction(),
+                child: Image.asset(
+                  AssertRes.nextImage,
+                  scale: 20,
+                ),
+              ),
+            ),
           ],
         ),
         SizedBox(height: Get.height * 0.10),
