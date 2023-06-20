@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 Widget playScreenWidget() {
+  Get.put(PlayScreenController());
   return Container(
     height: Get.height,
     width: Get.width,
@@ -69,8 +70,8 @@ Widget playScreenWidget() {
                   child: GetBuilder<PlayScreenController>(
                     id: 'printValue',
                     builder: (controller) => Text(
-                      controller.textx,
-                      style: TextStyle(
+                      controller.text,
+                      style: const TextStyle(
                           fontSize: 30,
                           color: Colors.white,
                           fontFamily: 'chalk'),
