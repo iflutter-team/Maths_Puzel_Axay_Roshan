@@ -1,3 +1,4 @@
+import 'package:demo_math_puzzel/play_screen/play_controller.dart';
 import 'package:demo_math_puzzel/play_screen/playscreen_common.dart';
 import 'package:demo_math_puzzel/utils/asset_res.dart';
 import 'package:flutter/material.dart';
@@ -65,11 +66,16 @@ Widget playScreenWidget() {
                     borderRadius: BorderRadius.circular(50),
                     border: Border.all(width: 3, color: Colors.white),
                   ),
-                  // child: const Text(
-                  //   "1",
-                  //   style: TextStyle(
-                  //       fontSize: 30, color: Colors.white, fontFamily: 'chalk'),
-                  // ),
+                  child: GetBuilder<PlayScreenController>(
+                    id: 'printValue',
+                    builder: (controller) => Text(
+                      controller.textx,
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontFamily: 'chalk'),
+                    ),
+                  ),
                 ),
               ),
               SizedBox(
@@ -88,25 +94,25 @@ Widget playScreenWidget() {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            playScreenCommon("1"),
-            playScreenCommon("2"),
-            playScreenCommon("3"),
-            playScreenCommon("4"),
-            playScreenCommon("5"),
-            playScreenCommon("6"),
-            playScreenCommon("7"),
-            playScreenCommon("8"),
-            playScreenCommon("9"),
-            playScreenCommon("0"),
+            playScreenCommon("1", 1),
+            playScreenCommon("2", 2),
+            playScreenCommon("3", 3),
+            playScreenCommon("4", 4),
+            playScreenCommon("5", 5),
+            playScreenCommon("6", 6),
+            playScreenCommon("7", 7),
+            playScreenCommon("8", 8),
+            playScreenCommon("9", 9),
+            playScreenCommon("0", 0),
           ],
         ),
         SizedBox(height: Get.height * 0.02),
-        /*Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(AssertRes.submitImage, scale: 3.5),
           ],
-        ),*/
+        ),
         /*  Expanded(
           child: InkWell(
             onTap: () async {
