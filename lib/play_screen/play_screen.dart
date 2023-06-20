@@ -10,9 +10,9 @@ class Playscreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(PlayScreenController());
     return Scaffold(
-      // body: SafeArea(
-      //   child: playScreenWidget(),
-      // ),
+      body: SafeArea(
+        child: playScreenWidget(),
+      ),
     );
   }
 }

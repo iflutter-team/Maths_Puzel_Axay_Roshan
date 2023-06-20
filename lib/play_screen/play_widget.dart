@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 Widget playScreenWidget() {
-  Get.put(PlayScreenController());
   return Container(
     height: Get.height,
     width: Get.width,
@@ -21,7 +20,16 @@ Widget playScreenWidget() {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Image.asset(AssertRes.nextImage, scale: 20),
+            GetBuilder<PlayScreenController>(
+              id: 'nextLevel',
+              builder: (controller) => InkWell(
+                onTap: () => controller.nextLevelFunction(),
+                child: Image.asset(
+                  AssertRes.nextImage,
+                  scale: 20,
+                ),
+              ),
+            ),
             Container(
               height: 50,
               width: 150,
@@ -45,7 +53,7 @@ Widget playScreenWidget() {
                 ),
               ),
             ),
-            Image.asset(AssertRes.hintImage, scale: 20),
+            Image.asset(AssertRes.hintImage, scale: 21),
           ],
         ),
         SizedBox(height: Get.height * 0.10),
@@ -68,9 +76,9 @@ Widget playScreenWidget() {
                     border: Border.all(width: 3, color: Colors.white),
                   ),
                   child: GetBuilder<PlayScreenController>(
-                    id: 'printValue',
+                    id: 'valueText',
                     builder: (controller) => Text(
-                      controller.text,
+                      controller.val.toString(),
                       style: const TextStyle(
                           fontSize: 30,
                           color: Colors.white,
@@ -82,11 +90,14 @@ Widget playScreenWidget() {
               SizedBox(
                 width: Get.width * 0.03,
               ),
-              InkWell(
-                onTap: () {},
-                child: Image.asset(
-                  AssertRes.backImage,
-                  scale: 25,
+              GetBuilder<PlayScreenController>(
+                id: "remove",
+                builder: (controller) => InkWell(
+                  onTap: () => controller.removeButton(),
+                  child: Image.asset(
+                    AssertRes.backImage,
+                    scale: 25,
+                  ),
                 ),
               ),
             ],
