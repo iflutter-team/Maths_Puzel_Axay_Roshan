@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 Widget playScreenWidget() {
+  Get.put(PlayScreenController());
   return Container(
     height: Get.height,
     width: Get.width,
