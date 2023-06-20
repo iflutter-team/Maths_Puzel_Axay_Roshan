@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LevelController extends GetxController {
-  SharedPreferences? ps;
+  SharedPreferences? puzzleGame;
   static int level2 = 0;
 
   static List<String> wList = List.filled(75, "pending");
@@ -11,13 +11,13 @@ class LevelController extends GetxController {
   bool lod = false;
 
   get() async {
-    ps = await SharedPreferences.getInstance();
+    puzzleGame = await SharedPreferences.getInstance();
 
-    level2 = ps!.getInt("level") ?? 0;
+    level2 = puzzleGame!.getInt("level") ?? 0;
     print("level=$level2");
     for (int i = 0; i < level2; i++) {
-      String? win = ps!.getString("win$i") ?? "pending";
-      String? skip = ps!.getString("skip$i") ?? "pending";
+      String? win = puzzleGame!.getString("win$i") ?? "pending";
+      String? skip = puzzleGame!.getString("skip$i") ?? "pending";
       print("level=$i\twin=$win\tskip=$skip");
       wList[i] = win;
       sList[i] = skip;

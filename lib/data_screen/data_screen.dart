@@ -3,13 +3,7 @@ import 'package:flutter/material.dart';
 class DataPage {
   static double? tHeight,height,width,tp,bop;
 
-  DataPage(BuildContext context) {
-    tHeight = MediaQuery.of(context).size.height;
-    width = MediaQuery.of(context).size.width;
-    tp = MediaQuery.of(context).padding.top;
-    bop = MediaQuery.of(context).padding.bottom;
-    height = tHeight!-bop!;
-  }
+
   static List <String> anse=[
     "1",
     "2",

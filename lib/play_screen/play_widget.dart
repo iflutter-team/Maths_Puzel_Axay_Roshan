@@ -59,7 +59,7 @@ Widget playScreenWidget() {
         ),
         SizedBox(height: Get.height * 0.10),
         Image.asset(
-          AssertRes.puzzle1Image,
+          AssertRes.puzzel1Image,
           scale: 4.5,
         ),
         SizedBox(height: Get.height * 0.03),
