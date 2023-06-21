@@ -20,16 +20,7 @@ Widget playScreenWidget() {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            GetBuilder<PlayScreenController>(
-              id: 'nextLevel',
-              builder: (controller) => InkWell(
-                onTap: () => controller.nextLevelFunction(),
-                child: Image.asset(
-                  AssertRes.nextImage,
-                  scale: 20,
-                ),
-              ),
-            ),
+            Image.asset(AssertRes.hintImage, scale: 22),
             Container(
               height: Get.height * 0.07,
               width: Get.width * 0.45,
@@ -45,7 +36,7 @@ Widget playScreenWidget() {
                 child: GetBuilder<PlayScreenController>(
                   id: 'level++',
                   builder: (controller) => Text(
-                    "LEVEL ${controller.number}",
+                    "LEVEL ${PlayScreenController.number}",
                     style: TextStyle(
                       fontFamily: "chalk",
                       color: const Color(0xff7f181b),
@@ -66,7 +57,6 @@ Widget playScreenWidget() {
                 ),
               ),
             ),
-            Image.asset(AssertRes.hintImage, scale: 22),
           ],
         ),
         SizedBox(height: Get.height * 0.10),
@@ -147,32 +137,6 @@ Widget playScreenWidget() {
             ),
           ],
         ),
-        /*  Expanded(
-          child: InkWell(
-            onTap: () async {
-              if (text == DataPage.anse[widget.index]) {
-                await ps!.setString("win${widget.index}", "yes");
-                await ps!.setString("skip${widget.index}", "no");
-                widget.index++;
-                widget.index > level1
-                    ? ps!.setInt("level", widget.index)
-                    : null;
-                level1 = ps!.getInt("level") ?? 0;
-                print(">>>>>>>>>>ok>>>>$level1");
-                // await ps!.setInt("level", widget.index);
-                setState(() {});
-                // Get.to(WinPage);
-              }
-            },
-            child: Container(
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("Pic/submit.png"),
-                      fit: BoxFit.fitHeight)),
-            ),
-          ),
-
-         )*/
       ],
     ),
   );
