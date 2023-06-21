@@ -8,7 +8,7 @@ class LevelController extends GetxController {
 
   static List<String> wList = List.filled(75, "pending");
   static List<String> sList = List.filled(75, "pending");
-  bool lod = false;
+  bool lod = true;
 
   get() async {
     puzzleGame = await SharedPreferences.getInstance();
