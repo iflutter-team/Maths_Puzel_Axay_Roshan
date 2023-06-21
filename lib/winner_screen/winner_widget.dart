@@ -1,4 +1,3 @@
-import 'package:demo_math_puzzel/data_screen/data_screen.dart';
 import 'package:demo_math_puzzel/play_screen/play_controller.dart';
 import 'package:demo_math_puzzel/utils/asset_res.dart';
 import 'package:demo_math_puzzel/winner_screen/winner_controller.dart';
@@ -32,22 +31,25 @@ Widget winnerPageWidget() {
             style: TextStyle(
               fontFamily: "chalk",
               color: const Color(0xffffcd39),
-              fontSize: DataPage.width! * 0.09,
+              fontSize: Get.width * 0.09,
             ),
           ),
-          Text(
-            "LEVEL ${PlayScreenController.index}",
-            style: TextStyle(
-              fontFamily: "chalk",
-              color: const Color(0xffffcd39),
-              fontSize: DataPage.width! * 0.1,
-            ),
-          ),
-          InkWell(
-            onTap: () {},
-            child: Image.asset(
-              AssertRes.nextLevelImage,
-              scale: 4.7,
+          // Text(
+          //   "LEVEL ${PlayScreenController.index}",
+          //   style: TextStyle(
+          //     fontFamily: "chalk",
+          //     color: const Color(0xffffcd39),
+          //     fontSize: Get.width * 0.1,
+          //   ),
+          // ),
+          GetBuilder<WinnerPageController>(
+            id: 'levelPlus',
+            builder: (controller) => InkWell(
+              onTap: () => controller.winToNextLevel(),
+              child: Image.asset(
+                AssertRes.nextLevelImage,
+                scale: 4.7,
+              ),
             ),
           ),
           GetBuilder<WinnerPageController>(
@@ -60,9 +62,10 @@ Widget winnerPageWidget() {
               ),
             ),
           ),
-          GetBuilder<WinnerPageController>(id: 'menu',
+          GetBuilder<WinnerPageController>(
+            id: 'menu',
             builder: (controller) => InkWell(
-              onTap: () =>controller.winToMenu(),
+              onTap: () => controller.winToMenu(),
               child: Image.asset(
                 AssertRes.mainMenuImage,
                 scale: 4.7,
