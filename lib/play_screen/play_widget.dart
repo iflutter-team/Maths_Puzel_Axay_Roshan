@@ -138,7 +138,13 @@ Widget playScreenWidget() {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(AssertRes.submitImage, scale: 3.5),
+            GetBuilder<PlayScreenController>(
+              id: "submit",
+              builder: (controller) => InkWell(
+                onTap: () => controller.submitButton(),
+                child: Image.asset(AssertRes.submitImage, scale: 3.5),
+              ),
+            ),
           ],
         ),
         /*  Expanded(

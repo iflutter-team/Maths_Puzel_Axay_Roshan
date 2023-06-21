@@ -3,6 +3,7 @@ import 'package:demo_math_puzzel/utils/asset_res.dart';
 import 'package:demo_math_puzzel/winner_screen/winner_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 Widget winnerPageWidget() {
   return Container(
@@ -31,7 +32,7 @@ Widget winnerPageWidget() {
             style: TextStyle(
               fontFamily: "chalk",
               color: const Color(0xffffcd39),
-              fontSize: Get.width * 0.09,
+              fontSize: DataPage.width! * 0.09,
             ),
           ),
           // Text(
@@ -55,7 +56,7 @@ Widget winnerPageWidget() {
           GetBuilder<WinnerPageController>(
             id: 'level',
             builder: (controller) => InkWell(
-              onTap: () => controller.winToPuzzel,
+              onTap: () => controller.winToPuzzel(),
               child: Image.asset(
                 AssertRes.pImage,
                 scale: 4.7,
