@@ -14,39 +14,44 @@ class PlayScreenController extends GetxController {
     update(['valueText']);
   }
 
-  int number = 1;
+  static int number = 1;
 
-  int level1 = 0;
+  static int level1 = 0;
   bool ad = false;
 
-  // final controller = ConfettiController();
-  // bool isPlaying = false;
-  SharedPreferences? puzzleGame;
+  static SharedPreferences? puzzleGame;
 
   get() async {
     puzzleGame = await SharedPreferences.getInstance();
     level1 = puzzleGame!.getInt("level") ?? 0;
   }
 
-  void initState() {
+  @override
+  void onInit() {
+    super.onInit();
     get();
+    index = 0;
   }
 
   nextLevelFunction() async {
-    // await puzzleGame!.setString("win${PlayScreenController.index}", "no");
-    // await puzzleGame!.setString("skip${PlayScreenController.index}", "yes");
-    // PlayScreenController.index++;
-    //
-    // PlayScreenController.index > level1
-    //     ? puzzleGame!.setInt("level", PlayScreenController.index)
-    //     : null;
-    // level1 = puzzleGame!.getInt("level") ?? 0;
+    await puzzleGame!.setString("win${PlayScreenController.index}", "no");
+    await puzzleGame!.setString("skip${PlayScreenController.index}", "yes");
+    PlayScreenController.index++;
+
+    PlayScreenController.index > level1
+        ? puzzleGame!.setInt("level", PlayScreenController.index)
+        : null;
+    level1 = puzzleGame!.getInt("level") ?? 0;
     if (imageIndex < tableImages.length - 1) {
       imageIndex++;
+
       number++;
     }
+
+    tableImages.elementAt(imageIndex);
     print(">>>>>>$level1");
-    update(['nextLevel']);
+
+    update(['puzzleImages', 'level++']);
   }
 
   removeButton() {
@@ -57,23 +62,23 @@ class PlayScreenController extends GetxController {
     update(["valueText"]);
   }
 
-  // submitButton() async {
-  //   if (val == PlayScreenController.answer[PlayScreenController.index]) {
-  //     print('Submit Button');
-  //     await puzzleGame!.setString("win${PlayScreenController.index}", "yes");
-  //     await puzzleGame!.setString("skip${PlayScreenController.index}", "no");
-  //     PlayScreenController.index++;
-  //     PlayScreenController.index > level1
-  //         ? puzzleGame!.setInt("level", PlayScreenController.index)
-  //         : null;
-  //     level1 = puzzleGame!.getInt("level") ?? 0;
-  //     print(">>>>>>>>$level1");
-  //     await puzzleGame!.setInt("level", PlayScreenController.index);
-  //     number++;
-  //     Get.off(() => const WinPage());
-  //   }
-  //   update(['submit']);
-  // }
+  submitButton() async {
+    if (val == PlayScreenController.answer[PlayScreenController.index]) {
+      print('Submit Button');
+      await puzzleGame!.setString("win${PlayScreenController.index}", "yes");
+      await puzzleGame!.setString("skip${PlayScreenController.index}", "no");
+      PlayScreenController.index++;
+      PlayScreenController.index > level1
+          ? puzzleGame!.setInt("level", PlayScreenController.index)
+          : null;
+      level1 = puzzleGame!.getInt("level") ?? 0;
+      print(">>>>>>>>$level1");
+      await puzzleGame!.setInt("level", PlayScreenController.index);
+      number++;
+      Get.off(() => const WinPage());
+    }
+    update(['submit']);
+  }
 
   static int imageIndex = 0;
 

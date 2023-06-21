@@ -32,7 +32,15 @@ Widget winnerPageWidget() {
             style: TextStyle(
               fontFamily: "chalk",
               color: const Color(0xffffcd39),
-              fontSize: DataPage.width! * 0.09,
+              fontSize: Get.width * 0.09,
+            ),
+          ),
+          Text(
+            "LEVEL ${PlayScreenController.index}",
+            style: TextStyle(
+              fontFamily: "chalk",
+              color: const Color(0xffffcd39),
+              fontSize: Get.width * 0.1,
             ),
           ),
           // Text(
