@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 Widget playScreenWidget() {
-  Get.put(PlayScreenController());
   return Container(
     height: Get.height,
     width: Get.width,
@@ -21,10 +20,19 @@ Widget playScreenWidget() {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Image.asset(AssertRes.hintImage, scale: 22),
+            GetBuilder<PlayScreenController>(
+              id: 'nextLevel',
+              builder: (controller) => InkWell(
+                onTap: () => controller.nextLevelFunction(),
+                child: Image.asset(
+                  AssertRes.nextImage,
+                  scale: 20,
+                ),
+              ),
+            ),
             Container(
-              height: 50,
-              width: 150,
+              height: Get.height * 0.07,
+              width: Get.width * 0.45,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
@@ -34,17 +42,21 @@ Widget playScreenWidget() {
                 ),
               ),
               child: Center(
-                child: Text(
-                  "LEVEL 1",
-                  style: TextStyle(
-                    fontFamily: "chalk",
-                    color: const Color(0xff7f181b),
-                    fontSize: Get.width * 0.07,
-                    fontWeight: FontWeight.bold,
+                child: GetBuilder<PlayScreenController>(
+                  id: 'level++',
+                  builder: (controller) => Text(
+                    "LEVEL ${controller.number}",
+                    style: TextStyle(
+                      fontFamily: "chalk",
+                      color: const Color(0xff7f181b),
+                      fontSize: Get.width * 0.07,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
             ),
+            Image.asset(AssertRes.hintImage, scale: 22),
             GetBuilder<PlayScreenController>(
               id: 'nextLevel',
               builder: (controller) => InkWell(
@@ -58,11 +70,14 @@ Widget playScreenWidget() {
           ],
         ),
         SizedBox(height: Get.height * 0.10),
-        Image.asset(
-          AssertRes.puzzel1Image,
-          scale: 4.5,
+        GetBuilder<PlayScreenController>(
+          id: 'puzzleImages',
+          builder: (controller) => Image.asset(
+            PlayScreenController.tableImages[PlayScreenController.imageIndex],
+            scale: 4.5,
+          ),
         ),
-        SizedBox(height: Get.height * 0.03),
+        SizedBox(height: Get.height * 0.05),
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Row(

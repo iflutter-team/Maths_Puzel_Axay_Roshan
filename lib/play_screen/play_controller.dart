@@ -1,28 +1,21 @@
-import 'package:demo_math_puzzel/data_screen/data_screen.dart';
 import 'package:demo_math_puzzel/utils/asset_res.dart';
-import 'package:demo_math_puzzel/winner_screen/winner_page.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PlayScreenController extends GetxController {
-  String? text = "";
   String val = '';
   static late int index;
-
-  printValue(int t) {
-    text = ("$text$t");
-  }
 
   void numberTap(int value) {
     val = val + value.toString();
     update(['valueText']);
   }
 
+  int number = 1;
+
   int level1 = 0;
   bool ad = false;
 
-  // final controller = ConfettiController();
-  // bool isPlaying = false;
   SharedPreferences? puzzleGame;
 
   get() async {
@@ -30,29 +23,19 @@ class PlayScreenController extends GetxController {
     level1 = puzzleGame!.getInt("level") ?? 0;
   }
 
-  // void dispose() {
-  //   controller.dispose();
-  //   super.dispose();
-  // }
-
-  void initState() {
-    get();
-    // controller.play();
-    // ConfettiWidget(
-    //   confettiController: controller,
-    //   shouldLoop: true,
-    // );
-  }
-
   nextLevelFunction() async {
-    await puzzleGame!.setString("win${PlayScreenController.index}", "no");
-    await puzzleGame!.setString("skip${PlayScreenController.index}", "yes");
-    PlayScreenController.index++;
-
-    PlayScreenController.index > level1
-        ? puzzleGame!.setInt("level", PlayScreenController.index)
-        : null;
-    level1 = puzzleGame!.getInt("level") ?? 0;
+    // await puzzleGame!.setString("win${PlayScreenController.index}", "no");
+    // await puzzleGame!.setString("skip${PlayScreenController.index}", "yes");
+    // PlayScreenController.index++;
+    //
+    // PlayScreenController.index > level1
+    //     ? puzzleGame!.setInt("level", PlayScreenController.index)
+    //     : null;
+    // level1 = puzzleGame!.getInt("level") ?? 0;
+    if (imageIndex < tableImages.length - 1) {
+      imageIndex++;
+      number++;
+    }
     print(">>>>>>$level1");
     update(['nextLevel']);
   }
@@ -65,27 +48,27 @@ class PlayScreenController extends GetxController {
     update(["valueText"]);
   }
 
-  submitButton() async {
-    if (val == DataPage.ans[PlayScreenController.index]) {
-      print('Submit Button');
-      await puzzleGame!.setString("win${PlayScreenController.index}", "yes");
-      await puzzleGame!.setString("skip${PlayScreenController.index}", "no");
-      PlayScreenController.index++;
-      PlayScreenController.index > level1
-          ? puzzleGame!.setInt("level", PlayScreenController.index)
-          : null;
-      level1 = puzzleGame!.getInt("level") ?? 0;
-      print(">>>>>>>>$level1");
-      await puzzleGame!.setInt("level", PlayScreenController.index);
+  // submitButton() async {
+  //   if (val == PlayScreenController.answer[PlayScreenController.index]) {
+  //     print('Submit Button');
+  //     await puzzleGame!.setString("win${PlayScreenController.index}", "yes");
+  //     await puzzleGame!.setString("skip${PlayScreenController.index}", "no");
+  //     PlayScreenController.index++;
+  //     PlayScreenController.index > level1
+  //         ? puzzleGame!.setInt("level", PlayScreenController.index)
+  //         : null;
+  //     level1 = puzzleGame!.getInt("level") ?? 0;
+  //     print(">>>>>>>>$level1");
+  //     await puzzleGame!.setInt("level", PlayScreenController.index);
+  //     number++;
+  //     Get.off(() => const WinPage());
+  //   }
+  //   update(['submit']);
+  // }
 
-      Get.off(() => const WinPage());
-    }
-    update(['submit']);
-  }
+  static int imageIndex = 0;
 
-  int imageIndex = 0;
-
-  List<String> tableImages = [
+  static List<String> tableImages = [
     AssertRes.puzzel1Image,
     AssertRes.puzzel2Image,
     AssertRes.puzzel3Image,
@@ -160,5 +143,157 @@ class PlayScreenController extends GetxController {
     AssertRes.puzzel73Image,
     AssertRes.puzzel74Image,
     AssertRes.puzzel75Image,
+  ];
+
+  static List<String> answer = [
+    "10",
+    /*1*/
+    "25",
+    /*2*/
+    "6",
+    /*3*/
+    "14",
+    /*4*/
+    "128",
+    /*5*/
+    "7",
+    /*6*/
+    "50",
+    /*7*/
+    "1025",
+    /*8*/
+    "100",
+    /*9*/
+    "3",
+    /*10*/
+    "212",
+    /*11*/
+    "3011",
+    /*12*/
+    "14",
+    /*13*/
+    "16",
+    /*14*/
+    "1",
+    /*15*/
+    "2",
+    /*16*/
+    "44",
+    /*17*/
+    "45",
+    /*18*/
+    "625",
+    /*19*/
+    "1",
+    /*20*/
+    "13",
+    /*21*/
+    "47",
+    /*22*/
+    "50",
+    /*23*/
+    "34",
+    /*24*/
+    "6",
+    /*25*/
+    "41",
+    /*26*/
+    "16",
+    /*27*/
+    "126",
+    /*28*/
+    "82",
+    /*29*/
+    "14",
+    /*30*/
+    "7",
+    /*31*/
+    "132",
+    /*32*/
+    "34",
+    /*33*/
+    "48",
+    /*34*/
+    "42",
+    /*35*/
+    "288",
+    /*36*/
+    "45",
+    /*37*/
+    "4",
+    /*38*/
+    "111",
+    /*39*/
+    "47",
+    /*40*/
+    "15",
+    /*41*/
+    "87",
+    /*42*/
+    "22",
+    /*43*/
+    "253",
+    /*44*/
+    "12",
+    /*45*/
+    "48",
+    /*46*/
+    "178",
+    /*47*/
+    "1",
+    /*48*/
+    "6",
+    /*49*/
+    "10",
+    /*50*/
+    "2",
+    /*51*/
+    "20",
+    /*52*/
+    "7",
+    /*53*/
+    "5",
+    /*54*/
+    "143547",
+    /*55*/
+    "84",
+    /*56*/
+    "11",
+    /*57*/
+    "27",
+    /*58*/
+    "3",
+    /*59*/
+    "5",
+    /*60*/
+    "39",
+    /*61*/
+    "31",
+    /*62*/
+    "10",
+    /*63*/
+    "130",
+    /*64*/
+    "22",
+    /*65*/
+    "3",
+    /*66*/
+    "14",
+    /*67*/
+    "42",
+    /*68*/
+    "164045",
+    /*69*/
+    "11",
+    /*70*/
+    "481",
+    /*71*/
+    "86",
+    /*72*/
+    "84",
+    /*73*/
+    "13",
+    /*74*/
+    "8", /*75*/
   ];
 }
