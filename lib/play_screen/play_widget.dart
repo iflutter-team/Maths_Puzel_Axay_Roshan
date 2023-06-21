@@ -31,8 +31,8 @@ Widget playScreenWidget() {
               ),
             ),
             Container(
-              height: 50,
-              width: 150,
+              height: Get.height * 0.07,
+              width: Get.width * 0.45,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
@@ -42,26 +42,32 @@ Widget playScreenWidget() {
                 ),
               ),
               child: Center(
-                child: Text(
-                  "LEVEL 1",
-                  style: TextStyle(
-                    fontFamily: "chalk",
-                    color: const Color(0xff7f181b),
-                    fontSize: Get.width * 0.07,
-                    fontWeight: FontWeight.bold,
+                child: GetBuilder<PlayScreenController>(
+                  id: 'level++',
+                  builder: (controller) => Text(
+                    "LEVEL ${controller.number}",
+                    style: TextStyle(
+                      fontFamily: "chalk",
+                      color: const Color(0xff7f181b),
+                      fontSize: Get.width * 0.07,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
             ),
-            Image.asset(AssertRes.hintImage, scale: 21),
+            Image.asset(AssertRes.hintImage, scale: 22),
           ],
         ),
         SizedBox(height: Get.height * 0.10),
-        Image.asset(
-          AssertRes.puzzel1Image,
-          scale: 4.5,
+        GetBuilder<PlayScreenController>(
+          id: 'puzzleImages',
+          builder: (controller) => Image.asset(
+            PlayScreenController.tableImages[PlayScreenController.imageIndex],
+            scale: 4.5,
+          ),
         ),
-        SizedBox(height: Get.height * 0.03),
+        SizedBox(height: Get.height * 0.05),
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Row(
@@ -125,32 +131,6 @@ Widget playScreenWidget() {
             Image.asset(AssertRes.submitImage, scale: 3.5),
           ],
         ),
-        /*  Expanded(
-          child: InkWell(
-            onTap: () async {
-              if (text == DataPage.anse[widget.index]) {
-                await ps!.setString("win${widget.index}", "yes");
-                await ps!.setString("skip${widget.index}", "no");
-                widget.index++;
-                widget.index > level1
-                    ? ps!.setInt("level", widget.index)
-                    : null;
-                level1 = ps!.getInt("level") ?? 0;
-                print(">>>>>>>>>>ok>>>>$level1");
-                // await ps!.setInt("level", widget.index);
-                setState(() {});
-                // Get.to(WinPage);
-              }
-            },
-            child: Container(
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("Pic/submit.png"),
-                      fit: BoxFit.fitHeight)),
-            ),
-          ),
-
-         )*/
       ],
     ),
   );
