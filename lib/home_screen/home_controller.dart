@@ -1,5 +1,7 @@
+import 'package:demo_math_puzzel/ads/unity_ads.dart';
 import 'package:demo_math_puzzel/level_screen/level_screen.dart';
 import 'package:demo_math_puzzel/play_screen/play_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 /*class HomePageController extends GetxController {
@@ -30,7 +32,18 @@ import 'package:get/get.dart';
   }
 }*/
 class HomePageController extends GetxController {
-  void startToPlay() {
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      await AdManager.loadUnityIntAd();
+      await AdManager.loadUnityRewardedAd();
+    });
+  }
+
+  Future<void> startToPlay() async {
+    await AdManager.showIntAd();
     Get.to(() => const Playscreen());
     update(['start']);
   }
