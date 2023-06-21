@@ -39,6 +39,7 @@ dependencies:
   shared_preferences:
   share_plus:
   lottie:
+  unity_ads_plugin:
 
 dev_dependencies:
   flutter_test:
