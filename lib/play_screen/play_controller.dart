@@ -1,25 +1,16 @@
-import 'package:demo_math_puzzel/data_screen/data_screen.dart';
+import 'package:demo_math_puzzel/audio_screen/audio_controller.dart';
 import 'package:demo_math_puzzel/utils/asset_res.dart';
 import 'package:demo_math_puzzel/winner_screen/winner_page.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PlayScreenController extends GetxController {
-  String? text = "";
+  AudioController audioController = Get.find();
+
   String val = '';
   static late int index;
   bool isPlaying = false;
   int isHint = 1;
-
-  printValue(int t) {
-    text = ("$text$t");
-  }
-
-  void numberTap(int value) {
-    val = val + value.toString();
-    update(['valueText']);
-  }
 
   static int number = 1;
 
@@ -40,6 +31,12 @@ class PlayScreenController extends GetxController {
     index = 0;
   }
 
+  Future<void> numberTap(int value) async {
+    val = val + value.toString();
+    await audioController.tapButtonSound();
+    update(['valueText']);
+  }
+
   nextLevelFunction() async {
     await puzzleGame!.setString("win${PlayScreenController.index}", "no");
     await puzzleGame!.setString("skip${PlayScreenController.index}", "yes");
@@ -51,7 +48,6 @@ class PlayScreenController extends GetxController {
     level1 = puzzleGame!.getInt("level") ?? 0;
     if (imageIndex < tableImages.length - 1) {
       imageIndex++;
-
       number++;
     }
 
@@ -74,6 +70,7 @@ class PlayScreenController extends GetxController {
   }
 
   submitButton() async {
+    print(val);
     if (val == PlayScreenController.answer[PlayScreenController.index]) {
       print('Submit Button');
       await puzzleGame!.setString("win${PlayScreenController.index}", "yes");
@@ -85,10 +82,15 @@ class PlayScreenController extends GetxController {
       level1 = puzzleGame!.getInt("level") ?? 0;
       print(">>>>>>>>$level1");
       await puzzleGame!.setInt("level", PlayScreenController.index);
-      number++;
+      if (imageIndex < tableImages.length - 1) {
+        imageIndex++;
+        number++;
+      }
+      audioController.start.stop();
+      await audioController.winner();
+      update(['submit']);
       Get.off(() => const WinPage());
     }
-    update(['submit']);
   }
 
   static int imageIndex = 0;
