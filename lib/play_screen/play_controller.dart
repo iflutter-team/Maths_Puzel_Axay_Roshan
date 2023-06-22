@@ -61,6 +61,10 @@ class PlayScreenController extends GetxController {
     update(['puzzleImages', 'level++']);
   }
 
+  void hintDialog() {
+    Get.defaultDialog(title: "Answer", middleText: "$answer");
+  }
+
   removeButton() {
     print("remove Value");
     if (val.isNotEmpty) {
