@@ -20,7 +20,12 @@ Widget playScreenWidget() {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Image.asset(AssertRes.hintImage, scale: 22),
+            GetBuilder<PlayScreenController>(
+              builder: (controller) => InkWell(
+                onTap: () => controller.hintDialog(),
+                child: Image.asset(AssertRes.hintImage, scale: 22),
+              ),
+            ),
             Container(
               height: Get.height * 0.07,
               width: Get.width * 0.45,
