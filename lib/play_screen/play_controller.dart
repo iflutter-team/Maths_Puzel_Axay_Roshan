@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PlayScreenController extends GetxController {
+  AudioController audioController = Get.find();
+
   String val = '';
   static late int index;
 
@@ -13,6 +15,9 @@ class PlayScreenController extends GetxController {
     val = val + value.toString();
     update(['valueText']);
   }
+
+  bool isPlaying = false;
+  int isHint = 1;
 
   static int number = 1;
 
@@ -31,6 +36,12 @@ class PlayScreenController extends GetxController {
     super.onInit();
     get();
     index = 0;
+  }
+
+  Future<void> numberTap(int value) async {
+    val = val + value.toString();
+    await audioController.tapButtonSound();
+    update(['valueText']);
   }
 
   nextLevelFunction() async {
@@ -54,6 +65,10 @@ class PlayScreenController extends GetxController {
     update(['puzzleImages', 'level++']);
   }
 
+  void hintDialog() {
+    Get.defaultDialog(title: "Answer", middleText: "$answer");
+  }
+
   removeButton() {
     print("remove Value");
     if (val.isNotEmpty) {
@@ -63,6 +78,7 @@ class PlayScreenController extends GetxController {
   }
 
   submitButton() async {
+    print(val);
     if (val == PlayScreenController.answer[PlayScreenController.index]) {
       print('Submit Button');
       await puzzleGame!.setString("win${PlayScreenController.index}", "yes");
@@ -74,10 +90,15 @@ class PlayScreenController extends GetxController {
       level1 = puzzleGame!.getInt("level") ?? 0;
       print(">>>>>>>>$level1");
       await puzzleGame!.setInt("level", PlayScreenController.index);
-      number++;
+      if (imageIndex < tableImages.length - 1) {
+        imageIndex++;
+        number++;
+      }
+      audioController.start.stop();
+      await audioController.winner();
+      update(['submit']);
       Get.off(() => const WinPage());
     }
-    update(['submit']);
   }
 
   static int imageIndex = 0;
