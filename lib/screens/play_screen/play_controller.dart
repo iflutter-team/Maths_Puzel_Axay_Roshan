@@ -1,6 +1,10 @@
-import 'package:demo_math_puzzel/audio_screen/audio_controller.dart';
+import 'package:demo_math_puzzel/screens/audio_screen/audio_controller.dart';
+import 'package:demo_math_puzzel/screens/winner_screen/winner_page.dart';
 import 'package:demo_math_puzzel/utils/asset_res.dart';
+<<<<<<< Updated upstream:lib/play_screen/play_controller.dart
 import 'package:demo_math_puzzel/winner_screen/winner_page.dart';
+=======
+>>>>>>> Stashed changes:lib/screens/play_screen/play_controller.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -52,10 +56,6 @@ class PlayScreenController extends GetxController {
       imageIndex++;
       number++;
     }
-
-    tableImages.elementAt(imageIndex);
-    print(">>>>>>$level1");
-
     update(['puzzleImages', 'level++']);
   }
 
@@ -64,7 +64,6 @@ class PlayScreenController extends GetxController {
   }
 
   removeButton() {
-    print("remove Value");
     if (val.isNotEmpty) {
       val = val.substring(0, val.length - 1);
     }
@@ -72,9 +71,7 @@ class PlayScreenController extends GetxController {
   }
 
   submitButton() async {
-    print(val);
     if (val == PlayScreenController.answer[PlayScreenController.index]) {
-      print('Submit Button');
       await puzzleGame!.setString("win${PlayScreenController.index}", "yes");
       await puzzleGame!.setString("skip${PlayScreenController.index}", "no");
       PlayScreenController.index++;
@@ -82,7 +79,6 @@ class PlayScreenController extends GetxController {
           ? puzzleGame!.setInt("level", PlayScreenController.index)
           : null;
       level1 = puzzleGame!.getInt("level") ?? 0;
-      print(">>>>>>>>$level1");
       await puzzleGame!.setInt("level", PlayScreenController.index);
       if (imageIndex < tableImages.length - 1) {
         imageIndex++;
@@ -92,6 +88,25 @@ class PlayScreenController extends GetxController {
       await audioController.winner();
       update(['submit']);
       Get.off(() => const WinPage());
+    } else {
+      Get.snackbar(
+        "Wrong Answer",
+        "try again",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        borderRadius: 20,
+        margin: const EdgeInsets.all(15),
+        colorText: Colors.black,
+        backgroundGradient: const LinearGradient(
+          colors: [
+            Color(0xff20E2D7),
+            Color(0xffF9FEA5),
+          ],
+        ),
+        duration: const Duration(seconds: 2),
+        isDismissible: true,
+        forwardAnimationCurve: Curves.bounceInOut,
+      );
     }
   }
 
@@ -323,6 +338,7 @@ class PlayScreenController extends GetxController {
     /*73*/
     "13",
     /*74*/
-    "8", /*75*/
+    "8",
+    /*75*/
   ];
 }

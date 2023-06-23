@@ -1,8 +1,11 @@
-import 'package:demo_math_puzzel/play_screen/play_screen.dart';
+
+import 'package:demo_math_puzzel/screens/audio_screen/audio_controller.dart';
+import 'package:demo_math_puzzel/screens/play_screen/play_screen.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LevelController extends GetxController {
+  AudioController audioController = Get.find();
   SharedPreferences? puzzleGame;
   static int level2 = 0;
 
@@ -26,6 +29,7 @@ class LevelController extends GetxController {
 
     print(wList);
     print(sList);
+    update(['GetFunction']);
   }
 
   @override
@@ -33,13 +37,17 @@ class LevelController extends GetxController {
     // TODO: implement onInit
     super.onInit();
 
-    get();
+    GetBuilder<LevelController>(
+      id: 'GetFunction',
+      builder: (controller) => get(),
+    );
   }
 
-  void levelToPlayScreen() {
+  Future<void> levelToPlayScreen() async {
     Get.to(
       () => const Playscreen(),
     );
     update(['play']);
+    await audioController.startGame();
   }
 }
