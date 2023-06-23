@@ -1,5 +1,6 @@
-import 'package:demo_math_puzzel/play_screen/play_controller.dart';
-import 'package:demo_math_puzzel/play_screen/playscreen_common.dart';
+
+import 'package:demo_math_puzzel/screens/play_screen/play_controller.dart';
+import 'package:demo_math_puzzel/screens/play_screen/playscreen_common.dart';
 import 'package:demo_math_puzzel/utils/asset_res.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,7 +17,7 @@ Widget playScreenWidget() {
     ),
     child: Column(
       children: [
-        SizedBox(height: Get.height * 0.020),
+        SizedBox(height: Get.height * 0.050),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

@@ -1,6 +1,6 @@
-import 'package:demo_math_puzzel/data_screen/data_screen.dart';
-import 'package:demo_math_puzzel/winner_screen/winner_controller.dart';
-import 'package:demo_math_puzzel/winner_screen/winner_widget.dart';
+
+import 'package:demo_math_puzzel/screens/winner_screen/winner_controller.dart';
+import 'package:demo_math_puzzel/screens/winner_screen/winner_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

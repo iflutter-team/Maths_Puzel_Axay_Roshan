@@ -1,8 +1,9 @@
-import 'package:demo_math_puzzel/audio_screen/audio_controller.dart';
-import 'package:demo_math_puzzel/home_screen/home_screen.dart';
-import 'package:demo_math_puzzel/level_screen/level_screen.dart';
-import 'package:demo_math_puzzel/play_screen/play_controller.dart';
-import 'package:demo_math_puzzel/play_screen/play_screen.dart';
+
+import 'package:demo_math_puzzel/screens/audio_screen/audio_controller.dart';
+import 'package:demo_math_puzzel/screens/home_screen/home_screen.dart';
+import 'package:demo_math_puzzel/screens/level_screen/level_screen.dart';
+import 'package:demo_math_puzzel/screens/play_screen/play_controller.dart';
+import 'package:demo_math_puzzel/screens/play_screen/play_screen.dart';
 import 'package:get/get.dart';
 
 class WinnerPageController extends GetxController {
@@ -10,23 +11,23 @@ class WinnerPageController extends GetxController {
 
   static int completeLevel = 1;
 
-  winToPuzzel() {
+  Future<void> winToPuzzel() async {
     Get.off(
       () => const LevelScreen(),
     );
     PlayScreenController.number++;
     completeLevel++;
     audioController.win.stop();
-    audioController.homePageSong;
+    await audioController.backGroundSound();
     update(['level']);
   }
 
-  winToNextLevel() {
+  Future<void> winToNextLevel() async {
     Get.off(
       () => const Playscreen(),
     );
     audioController.win.stop();
-    audioController.start;
+    await audioController.startGame();
     completeLevel++;
     update([
       'levelPlus',
@@ -39,13 +40,13 @@ class WinnerPageController extends GetxController {
     ]);
   }
 
-  winToMenu() {
+  Future<void> winToMenu() async {
     Get.off(
       () => const HomeScreen(),
     );
     completeLevel++;
     audioController.win.stop();
-    audioController.homePageSong;
+    await audioController.backGroundSound();
     update(['menu']);
   }
 }
