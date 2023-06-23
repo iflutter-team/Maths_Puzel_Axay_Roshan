@@ -1,6 +1,7 @@
 import 'package:demo_math_puzzel/audio_screen/audio_controller.dart';
 import 'package:demo_math_puzzel/utils/asset_res.dart';
 import 'package:demo_math_puzzel/winner_screen/winner_page.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,6 +12,7 @@ class PlayScreenController extends GetxController {
   static late int index;
   bool isPlaying = false;
   int isHint = 1;
+
 
   static int number = 1;
 

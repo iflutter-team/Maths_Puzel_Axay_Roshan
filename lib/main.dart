@@ -14,7 +14,7 @@ main() async {
   );
   runApp(
     GetMaterialApp(
-      home: const SplashScreen(),
+      home: const LevelScreen(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
