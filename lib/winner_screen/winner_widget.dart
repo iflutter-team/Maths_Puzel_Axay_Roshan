@@ -3,7 +3,6 @@ import 'package:demo_math_puzzel/utils/asset_res.dart';
 import 'package:demo_math_puzzel/winner_screen/winner_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 Widget winnerPageWidget() {
   return Container(
