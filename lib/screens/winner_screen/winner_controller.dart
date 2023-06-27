@@ -1,4 +1,3 @@
-
 import 'package:demo_math_puzzel/screens/audio_screen/audio_controller.dart';
 import 'package:demo_math_puzzel/screens/home_screen/home_screen.dart';
 import 'package:demo_math_puzzel/screens/level_screen/level_screen.dart';
@@ -24,7 +23,7 @@ class WinnerPageController extends GetxController {
 
   Future<void> winToNextLevel() async {
     Get.off(
-      () => const Playscreen(),
+      () => Playscreen(),
     );
     audioController.win.stop();
     await audioController.startGame();
