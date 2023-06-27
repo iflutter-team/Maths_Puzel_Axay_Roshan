@@ -1,5 +1,3 @@
-
-
 import 'package:demo_math_puzzel/screens/audio_screen/audio_controller.dart';
 import 'package:demo_math_puzzel/screens/winner_screen/winner_page.dart';
 import 'package:demo_math_puzzel/utils/asset_res.dart';
@@ -335,6 +333,7 @@ class PlayScreenController extends GetxController {
     /*73*/
     "13",
     /*74*/
-    "8", /*75*/
+    "8",
+    /*75*/
   ];
 }
