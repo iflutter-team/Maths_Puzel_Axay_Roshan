@@ -1,4 +1,3 @@
-
 import 'package:demo_math_puzzel/screens/audio_screen/audio_controller.dart';
 import 'package:demo_math_puzzel/screens/play_screen/play_screen.dart';
 import 'package:get/get.dart';
@@ -15,7 +14,6 @@ class LevelController extends GetxController {
 
   get() async {
     puzzleGame = await SharedPreferences.getInstance();
-
     level2 = puzzleGame!.getInt("level") ?? 0;
     print("level=$level2");
     for (int i = 0; i < level2; i++) {
@@ -45,7 +43,7 @@ class LevelController extends GetxController {
 
   Future<void> levelToPlayScreen() async {
     Get.to(
-      () => const Playscreen(),
+      () => Playscreen(),
     );
     update(['play']);
     await audioController.startGame();

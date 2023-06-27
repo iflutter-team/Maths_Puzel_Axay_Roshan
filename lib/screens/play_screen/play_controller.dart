@@ -15,6 +15,9 @@ class PlayScreenController extends GetxController {
 
   static int number = 1;
 
+  static int number = 0;
+  static int hintAnswerIndex = 0;
+
   static int level1 = 0;
   bool ad = false;
 
@@ -39,23 +42,23 @@ class PlayScreenController extends GetxController {
   }
 
   nextLevelFunction() async {
-    await puzzleGame!.setString("win${PlayScreenController.index}", "no");
-    await puzzleGame!.setString("skip${PlayScreenController.index}", "yes");
-    PlayScreenController.index++;
-
-    PlayScreenController.index > level1
-        ? puzzleGame!.setInt("level", PlayScreenController.index)
-        : null;
+    await puzzleGame!.setString("win$index", "no");
+    await puzzleGame!.setString("skip$index", "yes");
+    index++;
+    index > level1 ? puzzleGame!.setInt("level", index) : null;
     level1 = puzzleGame!.getInt("level") ?? 0;
     if (imageIndex < tableImages.length - 1) {
       imageIndex++;
       number++;
+      hintAnswerIndex++;
     }
-    update(['puzzleImages', 'level++']);
+    update(['puzzleImages', 'level++', 'Hint']);
   }
 
-  void hintDialog() {
-    Get.defaultDialog(title: "Answer", middleText: "$answer");
+  Future<void> hintDialog() async {
+    await AdManager.showIntAd();
+    Get.defaultDialog(title: "Answer", middleText: answer[hintAnswerIndex]);
+    update(['Hint']);
   }
 
   removeButton() {
@@ -66,22 +69,22 @@ class PlayScreenController extends GetxController {
   }
 
   submitButton() async {
-    if (val == PlayScreenController.answer[PlayScreenController.index]) {
-      await puzzleGame!.setString("win${PlayScreenController.index}", "yes");
-      await puzzleGame!.setString("skip${PlayScreenController.index}", "no");
-      PlayScreenController.index++;
-      PlayScreenController.index > level1
-          ? puzzleGame!.setInt("level", PlayScreenController.index)
-          : null;
+    if (val == answer[number]) {
+      index++;
+      hintAnswerIndex++;
+      await puzzleGame!.setString("win$index", "yes");
+      await puzzleGame!.setString("skip$index", "no");
+
+      index > level1 ? puzzleGame!.setInt("level", index) : null;
       level1 = puzzleGame!.getInt("level") ?? 0;
-      await puzzleGame!.setInt("level", PlayScreenController.index);
+      await puzzleGame!.setInt("level", index);
       if (imageIndex < tableImages.length - 1) {
         imageIndex++;
         number++;
       }
       audioController.start.stop();
       await audioController.winner();
-      update(['submit']);
+      update(['submit', 'Hint']);
       Get.off(() => const WinPage());
     } else {
       Get.snackbar(
@@ -100,7 +103,7 @@ class PlayScreenController extends GetxController {
         ),
         duration: const Duration(seconds: 2),
         isDismissible: true,
-        forwardAnimationCurve: Curves.bounceInOut,
+        forwardAnimationCurve: Curves.easeInToLinear,
       );
     }
   }

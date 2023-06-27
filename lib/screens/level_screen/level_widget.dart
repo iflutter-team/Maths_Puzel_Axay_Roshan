@@ -1,4 +1,5 @@
 import 'package:demo_math_puzzel/screens/level_screen/level_controller.dart';
+import 'package:demo_math_puzzel/screens/play_screen/play_screen.dart';
 import 'package:demo_math_puzzel/utils/asset_res.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -84,7 +85,9 @@ Widget levelBg() {
                     ),
                   ),
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Get.off(() => Playscreen());
+                    },
                     child: Container(
                         height: double.infinity,
                         width: double.infinity,

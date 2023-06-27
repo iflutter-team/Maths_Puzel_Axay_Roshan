@@ -1,4 +1,5 @@
 import 'package:demo_math_puzzel/screens/level_screen/level_screen.dart';
+import 'package:demo_math_puzzel/screens/splesh_screen/splesh_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unity_ads_plugin/unity_ads_plugin.dart';
@@ -15,7 +16,7 @@ main() async {
   );
   runApp(
     GetMaterialApp(
-      home: const LevelScreen(),
+      home: const SplashScreen(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
