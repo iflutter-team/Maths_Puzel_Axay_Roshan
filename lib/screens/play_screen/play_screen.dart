@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Playscreen extends StatelessWidget {
-  const Playscreen({super.key});
+  int? index;
+  Playscreen({super.key,this.index});
 
   @override
   Widget build(BuildContext context) {
