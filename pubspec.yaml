@@ -38,7 +38,6 @@ dependencies:
   get:
   shared_preferences:
   share_plus:
-  lottie:
   unity_ads_plugin:
   just_audio:
 
@@ -67,7 +66,6 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
    - asserts/images/
-   - asserts/lotties/
    - asserts/songs/
   #   - images/a_dot_ham.jpeg
 

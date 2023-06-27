@@ -1,4 +1,4 @@
-import 'package:demo_math_puzzel/home_screen/home_screem_widget.dart';
+import 'package:demo_math_puzzel/screens/home_screen/home_screem_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,11 +11,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(HomePageController());
     return Scaffold(
-      body: SafeArea(
-        child: backGroundImage(
-          double.infinity,
-          double.infinity,
-        ),
+      body: backGroundImage(
+        double.infinity,
+        double.infinity,
       ),
     );
   }

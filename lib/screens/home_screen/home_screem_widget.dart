@@ -1,4 +1,4 @@
-import 'package:demo_math_puzzel/home_screen/home_controller.dart';
+import 'package:demo_math_puzzel/screens/home_screen/home_controller.dart';
 import 'package:demo_math_puzzel/utils/asset_res.dart';
 import 'package:demo_math_puzzel/utils/string_res.dart';
 import 'package:flutter/material.dart';
