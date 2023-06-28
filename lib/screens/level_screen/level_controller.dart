@@ -3,14 +3,23 @@ import 'package:demo_math_puzzel/screens/play_screen/play_screen.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../play_screen/play_controller.dart';
+
 class LevelController extends GetxController {
   AudioController audioController = Get.find();
   SharedPreferences? puzzleGame;
   static int level2 = 0;
 
+  static int selectedIndex = 1;
+
   static List<String> wList = List.filled(75, "pending");
   static List<String> sList = List.filled(75, "pending");
   bool lod = true;
+
+  static void onTapLevel(int index){
+    selectedIndex = index;
+    Get.off(() => Playscreen());
+  }
 
   get() async {
     puzzleGame = await SharedPreferences.getInstance();
@@ -42,7 +51,7 @@ class LevelController extends GetxController {
   }
 
   Future<void> levelToPlayScreen() async {
-    Get.to(
+    Get.off(
       () => Playscreen(),
     );
     update(['play']);

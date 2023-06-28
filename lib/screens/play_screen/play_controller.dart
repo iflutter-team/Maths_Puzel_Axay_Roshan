@@ -1,5 +1,6 @@
 import 'package:demo_math_puzzel/screens/ads/unity_ads.dart';
 import 'package:demo_math_puzzel/screens/audio_screen/audio_controller.dart';
+import 'package:demo_math_puzzel/screens/level_screen/level_controller.dart';
 import 'package:demo_math_puzzel/screens/winner_screen/winner_page.dart';
 import 'package:demo_math_puzzel/utils/asset_res.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class PlayScreenController extends GetxController {
   AudioController audioController = Get.find();
+
+  int ads = 1;
 
   String val = '';
   static late int index;
@@ -55,9 +58,16 @@ class PlayScreenController extends GetxController {
   }
 
   Future<void> hintDialog() async {
-    await AdManager.showIntAd();
-    Get.defaultDialog(title: "Answer", middleText: answer[hintAnswerIndex]);
-    update(['Hint']);
+    if (ads <= 3) {
+      ads++; // await AdManager.showIntAd();
+
+      Get.defaultDialog(title: "Answer", middleText: answer[hintAnswerIndex]);
+      update(['Hint']);
+    } else {
+      await AdManager.showIntAd();
+      Get.snackbar('no more hint ','watch video');
+
+    }
   }
 
   removeButton() {
@@ -80,6 +90,7 @@ class PlayScreenController extends GetxController {
       if (imageIndex < tableImages.length - 1) {
         imageIndex++;
         number++;
+        LevelController.level2++;
       }
       audioController.start.stop();
       await audioController.winner();
