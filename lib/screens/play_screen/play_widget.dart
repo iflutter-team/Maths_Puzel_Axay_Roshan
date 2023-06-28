@@ -1,4 +1,3 @@
-
 import 'package:demo_math_puzzel/screens/play_screen/play_controller.dart';
 import 'package:demo_math_puzzel/screens/play_screen/playscreen_common.dart';
 import 'package:demo_math_puzzel/utils/asset_res.dart';
@@ -22,6 +21,7 @@ Widget playScreenWidget() {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             GetBuilder<PlayScreenController>(
+              id: 'Hint',
               builder: (controller) => InkWell(
                 onTap: () => controller.hintDialog(),
                 child: Image.asset(AssertRes.hintImage, scale: 22),
@@ -42,7 +42,7 @@ Widget playScreenWidget() {
                 child: GetBuilder<PlayScreenController>(
                   id: 'level++',
                   builder: (controller) => Text(
-                    "LEVEL ${PlayScreenController.number}",
+                    "LEVEL ${PlayScreenController.number + 1}",
                     style: TextStyle(
                       fontFamily: "chalk",
                       color: const Color(0xff7f181b),

@@ -40,6 +40,7 @@ dependencies:
   share_plus:
   unity_ads_plugin:
   just_audio:
+  lottie:
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +68,7 @@ flutter:
   assets:
    - asserts/images/
    - asserts/songs/
+   - asserts/lottie/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

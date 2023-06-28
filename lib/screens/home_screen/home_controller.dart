@@ -27,9 +27,9 @@ class HomePageController extends GetxController {
 
   Future<void> startToPlay() async {
     await AdManager.showIntAd();
-    Get.to(() => const Playscreen());
+    Get.to(() => Playscreen());
     audioController.homePageSong.stop();
-    await audioController.startGame();
+    audioController.startGame();
     update(['start']);
   }
 
