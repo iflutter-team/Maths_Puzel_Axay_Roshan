@@ -6,6 +6,8 @@ Widget splashPage() {
   return SizedBox(
     height: Get.height,
     width: Get.width,
-    child: Image.asset(AssertRes.spleshScreenImage),
+    child: Image.asset(
+      AssertRes.spleshScreenImage,
+    ),
   );
 }

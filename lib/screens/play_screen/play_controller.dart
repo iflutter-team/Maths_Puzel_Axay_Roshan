@@ -55,20 +55,11 @@ class PlayScreenController extends GetxController {
       number++;
       hintAnswerIndex++;
     }
-    update(['puzzleImages', 'level++', 'Hint']);
+    update(['puzzleImages', 'level++']);
   }
-  Future<void> hintDialog() async {
-    if (ads <= 3) {
-      ads++; // await AdManager.showIntAd();
 
-      Get.defaultDialog(title: "Answer", middleText: answer[hintAnswerIndex]);
-      update(['Hint']);
-    } else {
-      await AdManager.showIntAd();
-      Get.snackbar('no more hint ','watch video');
-
-    }
-  }
+  void hintDialog() {
+    Get.defaultDialog(title: "Answer", middleText: "$answer");
   }
 
   removeButton() {
@@ -79,23 +70,22 @@ class PlayScreenController extends GetxController {
   }
 
   submitButton() async {
-    if (val == answer[number]) {
-      index++;
-      hintAnswerIndex++;
-      await puzzleGame!.setString("win$index", "yes");
-      await puzzleGame!.setString("skip$index", "no");
-
-      index > level1 ? puzzleGame!.setInt("level", index) : null;
+    if (val == PlayScreenController.answer[PlayScreenController.index]) {
+      await puzzleGame!.setString("win${PlayScreenController.index}", "yes");
+      await puzzleGame!.setString("skip${PlayScreenController.index}", "no");
+      PlayScreenController.index++;
+      PlayScreenController.index > level1
+          ? puzzleGame!.setInt("level", PlayScreenController.index)
+          : null;
       level1 = puzzleGame!.getInt("level") ?? 0;
-      await puzzleGame!.setInt("level", index);
+      await puzzleGame!.setInt("level", PlayScreenController.index);
       if (imageIndex < tableImages.length - 1) {
         imageIndex++;
         number++;
-        LevelController.level2++;
       }
       audioController.start.stop();
       await audioController.winner();
-      update(['submit', 'Hint']);
+      update(['submit']);
       Get.off(() => const WinPage());
     } else {
       Get.snackbar(
@@ -114,7 +104,7 @@ class PlayScreenController extends GetxController {
         ),
         duration: const Duration(seconds: 2),
         isDismissible: true,
-        forwardAnimationCurve: Curves.easeInToLinear,
+        forwardAnimationCurve: Curves.bounceInOut,
       );
     }
   }
