@@ -19,6 +19,7 @@ class PlayScreenController extends GetxController {
 
   static int number = 0;
   static int hintAnswerIndex = 0;
+  // static int number = 1;
 
   static int level1 = 0;
   bool ad = false;
@@ -56,7 +57,6 @@ class PlayScreenController extends GetxController {
     }
     update(['puzzleImages', 'level++', 'Hint']);
   }
-
   Future<void> hintDialog() async {
     if (ads <= 3) {
       ads++; // await AdManager.showIntAd();
@@ -68,6 +68,7 @@ class PlayScreenController extends GetxController {
       Get.snackbar('no more hint ','watch video');
 
     }
+  }
   }
 
   removeButton() {
