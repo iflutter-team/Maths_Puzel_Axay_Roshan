@@ -8,16 +8,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class PlayScreenController extends GetxController {
   AudioController audioController = Get.find();
-
   String val = '';
   static late int index;
   bool isPlaying = false;
   int isHint = 1;
+<<<<<<< Updated upstream
 
   static int number = 1;
   // static int number = 0;
   static int hintAnswerIndex = 0;
 
+=======
+  static int number = 0;
+  static int level1 = 0;
+>>>>>>> Stashed changes
   bool ad = false;
 
   static SharedPreferences? puzzleGame;
@@ -43,8 +47,16 @@ class PlayScreenController extends GetxController {
   nextLevelFunction() async {
     await puzzleGame!.setString("win$index", "no");
     await puzzleGame!.setString("skip$index", "yes");
+<<<<<<< Updated upstream
     index++;
     index > level1 ? puzzleGame!.setInt("level", index) : null;
+=======
+    PlayScreenController.index++;
+
+    PlayScreenController.index > level1
+        ? puzzleGame!.setInt("level", index)
+        : null;
+>>>>>>> Stashed changes
     level1 = puzzleGame!.getInt("level") ?? 0;
     if (imageIndex < tableImages.length - 1) {
       imageIndex++;
@@ -70,7 +82,11 @@ class PlayScreenController extends GetxController {
   submitButton() async {
     if (val == answer[number]) {
       index++;
+<<<<<<< Updated upstream
       hintAnswerIndex++;
+=======
+      // hintAnswerIndex++;
+>>>>>>> Stashed changes
       await puzzleGame!.setString("win$index", "yes");
       await puzzleGame!.setString("skip$index", "no");
 
