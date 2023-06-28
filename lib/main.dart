@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:unity_ads_plugin/unity_ads_plugin.dart';
 
-
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await PrefServices.init();
   await UnityAds.init(
     gameId: '5302933',
     onComplete: () => print('Initialization Complete'),

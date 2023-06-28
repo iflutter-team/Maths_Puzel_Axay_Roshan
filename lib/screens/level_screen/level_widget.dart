@@ -58,10 +58,11 @@ Widget levelBg() {
                           top: 10,
                         ),
                         decoration: const BoxDecoration(
-                            image: DecorationImage(
-                          image: AssetImage(AssertRes.loseStarImage),
-                          fit: BoxFit.fill,
-                        )),
+                          image: DecorationImage(
+                            image: AssetImage(AssertRes.loseStarImage),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
                         child: Text(
                           "${index + 1}",
                           style: TextStyle(
@@ -85,9 +86,7 @@ Widget levelBg() {
                     ),
                   ),
                   child: InkWell(
-                    onTap: () {
-                      Get.off(() => Playscreen());
-                    },
+                    onTap: () =>LevelController.onTapLevel(index),
                     child: Container(
                         height: double.infinity,
                         width: double.infinity,
@@ -108,7 +107,7 @@ Widget levelBg() {
                   ),
                 );
               }
-              if (index == LevelController.level2) {
+              if (index<= LevelController.level2) {
                 return Container(
                   alignment: Alignment.center,
                   decoration: const BoxDecoration(
@@ -121,22 +120,23 @@ Widget levelBg() {
                       return InkWell(
                         onTap: () => controller.levelToPlayScreen(),
                         child: Container(
-                            height: double.infinity,
-                            width: double.infinity,
-                            alignment: Alignment.center,
-                            padding: const EdgeInsets.only(
-                              left: 10,
-                              top: 10,
+                          height: double.infinity,
+                          width: double.infinity,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsets.only(
+                            left: 10,
+                            top: 10,
+                          ),
+                          child: Text(
+                            "${index + 1}",
+                            style: TextStyle(
+                              fontFamily: "chalk",
+                              color: const Color(0xfffcac70),
+                              fontSize: Get.width * 0.07,
+                              fontWeight: FontWeight.bold,
                             ),
-                            child: Text(
-                              "${index + 1}",
-                              style: TextStyle(
-                                fontFamily: "chalk",
-                                color: const Color(0xfffcac70),
-                                fontSize: Get.width * 0.07,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )),
+                          ),
+                        ),
                       );
                     },
                   ),
@@ -145,8 +145,10 @@ Widget levelBg() {
               return Container(
                 alignment: Alignment.center,
                 decoration: const BoxDecoration(
-                    image:
-                        DecorationImage(image: AssetImage(AssertRes.boxOpen))),
+                  image: DecorationImage(
+                    image: AssetImage(AssertRes.boxOpen),
+                  ),
+                ),
                 child: Image.asset(AssertRes.boxClose),
               );
             },

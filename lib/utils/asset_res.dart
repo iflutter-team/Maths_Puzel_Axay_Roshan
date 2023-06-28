@@ -9,7 +9,7 @@ class AssertRes {
   static const pImage = "asserts/images/p.png";
   static const boxOpen = "asserts/images/box-open.png";
   static const boxClose = "asserts/images/box-close.png";
-  static const spleshScreenImage = "asserts/images/splash_mathpuzzle.jpg";
+  static const spleshScreenImage = "asserts/images/img_1.png";
   static const nextImage = "asserts/images/next.png";
   static const backImage = "asserts/images/back.png";
   static const levelImage = "asserts/images/name.png";
