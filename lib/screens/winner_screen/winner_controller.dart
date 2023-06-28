@@ -14,7 +14,7 @@ class WinnerPageController extends GetxController {
     Get.off(
       () => const LevelScreen(),
     );
-    PlayScreenController.number++;
+   // PlayScreenController.number++;
     completeLevel++;
     audioController.win.stop();
     await audioController.backGroundSound();

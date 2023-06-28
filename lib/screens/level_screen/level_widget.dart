@@ -86,9 +86,7 @@ Widget levelBg() {
                     ),
                   ),
                   child: InkWell(
-                    onTap: () {
-                      Get.off(() => Playscreen());
-                    },
+                    onTap: () =>LevelController.onTapLevel(index),
                     child: Container(
                         height: double.infinity,
                         width: double.infinity,
@@ -109,7 +107,7 @@ Widget levelBg() {
                   ),
                 );
               }
-              if (index == LevelController.gameLevel) {
+              if (index<= LevelController.level2) {
                 return Container(
                   alignment: Alignment.center,
                   decoration: const BoxDecoration(

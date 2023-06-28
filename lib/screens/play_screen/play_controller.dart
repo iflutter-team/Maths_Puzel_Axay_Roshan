@@ -1,5 +1,6 @@
 import 'package:demo_math_puzzel/screens/ads/unity_ads.dart';
 import 'package:demo_math_puzzel/screens/audio_screen/audio_controller.dart';
+import 'package:demo_math_puzzel/screens/level_screen/level_controller.dart';
 import 'package:demo_math_puzzel/screens/winner_screen/winner_page.dart';
 import 'package:demo_math_puzzel/utils/asset_res.dart';
 import 'package:flutter/material.dart';
@@ -8,11 +9,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class PlayScreenController extends GetxController {
   AudioController audioController = Get.find();
+
+  int ads = 1;
+
   String val = '';
   static late int index;
   bool isPlaying = false;
   int isHint = 1;
-<<<<<<< Updated upstream
 
   static int number = 1;
   // static int number = 0;
@@ -21,7 +24,6 @@ class PlayScreenController extends GetxController {
 =======
   static int number = 0;
   static int level1 = 0;
->>>>>>> Stashed changes
   bool ad = false;
 
   static SharedPreferences? puzzleGame;
@@ -47,16 +49,8 @@ class PlayScreenController extends GetxController {
   nextLevelFunction() async {
     await puzzleGame!.setString("win$index", "no");
     await puzzleGame!.setString("skip$index", "yes");
-<<<<<<< Updated upstream
     index++;
     index > level1 ? puzzleGame!.setInt("level", index) : null;
-=======
-    PlayScreenController.index++;
-
-    PlayScreenController.index > level1
-        ? puzzleGame!.setInt("level", index)
-        : null;
->>>>>>> Stashed changes
     level1 = puzzleGame!.getInt("level") ?? 0;
     if (imageIndex < tableImages.length - 1) {
       imageIndex++;
@@ -65,11 +59,18 @@ class PlayScreenController extends GetxController {
     }
     update(['puzzleImages', 'level++', 'Hint']);
   }
-
   Future<void> hintDialog() async {
-    await AdManager.showIntAd();
-    Get.defaultDialog(title: "Answer", middleText: answer[hintAnswerIndex]);
-    update(['Hint']);
+    if (ads <= 3) {
+      ads++; // await AdManager.showIntAd();
+
+      Get.defaultDialog(title: "Answer", middleText: answer[hintAnswerIndex]);
+      update(['Hint']);
+    } else {
+      await AdManager.showIntAd();
+      Get.snackbar('no more hint ','watch video');
+
+    }
+  }
   }
 
   removeButton() {
@@ -82,11 +83,7 @@ class PlayScreenController extends GetxController {
   submitButton() async {
     if (val == answer[number]) {
       index++;
-<<<<<<< Updated upstream
       hintAnswerIndex++;
-=======
-      // hintAnswerIndex++;
->>>>>>> Stashed changes
       await puzzleGame!.setString("win$index", "yes");
       await puzzleGame!.setString("skip$index", "no");
 
@@ -96,6 +93,7 @@ class PlayScreenController extends GetxController {
       if (imageIndex < tableImages.length - 1) {
         imageIndex++;
         number++;
+        LevelController.level2++;
       }
       audioController.start.stop();
       await audioController.winner();
