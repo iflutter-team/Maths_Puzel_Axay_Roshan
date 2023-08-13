@@ -1,10 +1,7 @@
 import 'package:demo_math_puzzel/screens/ads/unity_ads.dart';
 import 'package:demo_math_puzzel/screens/audio_screen/audio_controller.dart';
 import 'package:demo_math_puzzel/screens/winner_screen/winner_page.dart';
-import 'package:demo_math_puzzel/services/preffernce_service/preffernce.dart';
 import 'package:demo_math_puzzel/utils/asset_res.dart';
-import 'package:demo_math_puzzel/utils/data_res.dart';
-import 'package:drop_shadow_image/drop_shadow_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +15,13 @@ class PlayScreenController extends GetxController {
   bool firstAd = true;
   bool secondAd = true;
   bool thirdAd = true;
+  static int number = 1;
+  // static int number = 0;
+  static int hintAnswerIndex = 0;
+  // static int number = 1;
+  // static int number = 0;/
+  static int level1 = 0;
+  bool ad = false;
 
   PlayScreenController(this.index);
 

@@ -56,6 +56,7 @@ Widget playScreenWidget(BuildContext context) {
                 ),
               ),
             ),
+            Image.asset(AssertRes.hintImage, scale: 22),
             GetBuilder<PlayScreenController>(
               id: 'play_game',
               builder: (controller) => InkWell(
