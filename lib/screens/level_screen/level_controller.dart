@@ -1,57 +1,42 @@
 import 'package:demo_math_puzzel/screens/audio_screen/audio_controller.dart';
-import 'package:demo_math_puzzel/screens/play_screen/play_screen.dart';
+import 'package:demo_math_puzzel/services/preffernce_service/preffernce.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
+import '../play_screen/play_screen.dart';
 
 class LevelController extends GetxController {
   AudioController audioController = Get.find();
-  SharedPreferences? puzzleGame;
-  static int gameLevel = 0;
+  int gameLevel = 0;
+  int level2 = 0;
 
-  static int selectedIndex = 1;
+  List<String> wList = List.filled(75, "pending");
+  List<String> sList = List.filled(75, "pending");
+  bool lod = false;
 
-  static List<String> wList = List.filled(75, "pending");
-  static List<String> sList = List.filled(75, "pending");
-  bool lod = true;
-
-  static void onTapLevel(int index) {
-    selectedIndex = index;
-    Get.off(() => Playscreen());
+  @override
+  void onInit() {
+    super.onInit();
+    get();
   }
 
-  get() async {
-    puzzleGame = await SharedPreferences.getInstance();
-    level2 = puzzleGame!.getInt("level") ?? 0;
-    print("level=$level2");
-    for (int i = 0; i < level2; i++) {
-    gameLevel = puzzleGame!.getInt("level") ?? 0;
-    print("level=$gameLevel");
+  void get() async {
+    gameLevel = PrefService.getInt("level") ?? 0;
+    print("======gameLevel==========>$gameLevel");
     for (int i = 0; i < gameLevel; i++) {
-    String? win = puzzleGame!.getString("win$i") ?? "pending";
-    String? skip = puzzleGame!.getString("skip$i") ?? "pending";
-    print("level=$i\twin=$win\tskip=$skip");
-    wList[i] = win;
-    sList[i] = skip;
+      String? win = PrefService.getString("win$i");
+      String? skip = PrefService.getString("skip$i");
+      wList[i] = win;
+      sList[i] = skip;
     }
     lod = true;
-
-    update(['GetFunction']);
-    }
-
-    @override
-    void onInit() {
-    GetBuilder<LevelController>(
-    id: 'GetFunction',
-    builder: (controller) => get(),
-    );
-    super.onInit();
-    }
-
-    Future<void> levelToPlayScreen() async {
-    Get.off(
-    () => Playscreen(),);
-    update(['play']);
-    await audioController.startGame();
-    }
+    update(['GetFunctionUpdate']);
   }
+
+  Future<void> levelToPlayScreen(int index) async {
+    Get.off(
+      () => Playscreen(index: index),
+    );
+    audioController.homePageSong.stop();
+    await audioController.startGame();
+  }
+}

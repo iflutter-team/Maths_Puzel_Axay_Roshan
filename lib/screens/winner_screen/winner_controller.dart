@@ -1,51 +1,41 @@
 import 'package:demo_math_puzzel/screens/audio_screen/audio_controller.dart';
 import 'package:demo_math_puzzel/screens/home_screen/home_screen.dart';
 import 'package:demo_math_puzzel/screens/level_screen/level_screen.dart';
-import 'package:demo_math_puzzel/screens/play_screen/play_controller.dart';
 import 'package:demo_math_puzzel/screens/play_screen/play_screen.dart';
 import 'package:get/get.dart';
 
 class WinnerPageController extends GetxController {
-  AudioController audioController = Get.find();
+  @override
+  Future<void> onInit() async {
+    await audioController.winner();
+    super.onInit();
+  }
 
-  static int completeLevel = 1;
+  AudioController audioController = Get.find();
+  int completeLevel = 0;
+  WinnerPageController({required this.completeLevel});
 
   Future<void> winToPuzzel() async {
     Get.off(
       () => const LevelScreen(),
     );
-   // PlayScreenController.number++;
-    completeLevel++;
     audioController.win.stop();
     await audioController.backGroundSound();
-    update(['level']);
   }
 
   Future<void> winToNextLevel() async {
-    Get.off(
-      () => Playscreen(),
-    );
+    Get.off(() => Playscreen(
+          index: completeLevel + 1,
+        ));
     audioController.win.stop();
     await audioController.startGame();
-    completeLevel++;
-    update([
-      'levelPlus',
-      'level++',
-      'puzzleImages',
-      'valueText',
-      'menu',
-      'level',
-      'submit'
-    ]);
   }
 
   Future<void> winToMenu() async {
-    Get.off(
+    Get.offAll(
       () => const HomeScreen(),
     );
-    completeLevel++;
     audioController.win.stop();
     await audioController.backGroundSound();
-    update(['menu']);
   }
 }

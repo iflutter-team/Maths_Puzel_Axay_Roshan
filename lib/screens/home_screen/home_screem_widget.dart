@@ -5,13 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
-Widget backGroundImage(
-  double height,
-  double width,
-) {
+import '../common/size_box.dart';
+
+Widget backGroundImage() {
   return Container(
-    height: height,
-    width: width,
+    height: Get.height,
+    width: Get.width,
     decoration: const BoxDecoration(
       image: DecorationImage(
           image: AssetImage(
@@ -22,14 +21,15 @@ Widget backGroundImage(
     child: Column(
       children: [
         SizedBox(
-          height: Get.height * 0.070,
+          height: Get.height * 0.095,
         ),
-        Image.asset(
-          AssertRes.mathTextImage,
-          scale: 1.5,
+        sizeBoxCommon(
+          Get.width * 0.85,
+          Get.height * 0.12,
+          Image.asset(AssertRes.mathTextImage),
         ),
         SizedBox(
-          height: Get.height * 0.090,
+          height: Get.height * 0.12,
         ),
         GetBuilder<HomePageController>(
           id: 'start',
@@ -65,20 +65,20 @@ Widget backGroundImage(
           scale: 3.2,
         ),
         SizedBox(
-          height: Get.height * 0.18,
+          height: Get.height * 0.15,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            InkWell(
-              onTap: () {
-                Share.share("com.example.demo_math_puzzel");
-              },
-              child: Image.asset(
-                AssertRes.shareImage,
-                scale: 17,
+              InkWell(
+                onTap: () {
+                  Share.share("com.example.demo_math_puzzel");
+                },
+                child: Image.asset(
+                  AssertRes.shareImage,
+                  scale: 17,
+                ),
               ),
-            ),
             Container(
               height: Get.height * 0.060,
               width: Get.width * 0.45,

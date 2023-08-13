@@ -1,29 +1,32 @@
 import 'package:demo_math_puzzel/screens/play_screen/play_controller.dart';
 import 'package:demo_math_puzzel/screens/play_screen/playscreen_common.dart';
 import 'package:demo_math_puzzel/utils/asset_res.dart';
+import 'package:demo_math_puzzel/utils/data_res.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-Widget playScreenWidget() {
+Widget playScreenWidget(BuildContext context) {
   return Container(
     height: Get.height,
     width: Get.width,
     decoration: const BoxDecoration(
       image: DecorationImage(
-        image: AssetImage(AssertRes.backGroundImage),
+        image: AssetImage(AssertRes.playBackGroundImage),
         fit: BoxFit.fill,
       ),
     ),
     child: Column(
       children: [
-        SizedBox(height: Get.height * 0.050),
+        SizedBox(height: Get.height * 0.075),
+
+        ///------------------------------------     Play Game First Row-----------------------------------///
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             GetBuilder<PlayScreenController>(
-              id: 'Hint',
+              id: 'play_game',
               builder: (controller) => InkWell(
-                onTap: () => controller.hintDialog(),
+                onTap: () => controller.hintDialog(context),
                 child: Image.asset(AssertRes.hintImage, scale: 22),
               ),
             ),
@@ -40,9 +43,9 @@ Widget playScreenWidget() {
               ),
               child: Center(
                 child: GetBuilder<PlayScreenController>(
-                  id: 'level++',
+                  id: 'play_game',
                   builder: (controller) => Text(
-                    "LEVEL ${PlayScreenController.number + 1}",
+                    "LEVEL ${controller.index! + 1}",
                     style: TextStyle(
                       fontFamily: "chalk",
                       color: const Color(0xff7f181b),
@@ -54,7 +57,7 @@ Widget playScreenWidget() {
               ),
             ),
             GetBuilder<PlayScreenController>(
-              id: 'nextLevel',
+              id: 'play_game',
               builder: (controller) => InkWell(
                 onTap: () => controller.nextLevelFunction(),
                 child: Image.asset(
@@ -66,21 +69,25 @@ Widget playScreenWidget() {
           ],
         ),
         SizedBox(height: Get.height * 0.10),
+
+        ///-------------------------------------------------Table Image----------------------------------------------///
         GetBuilder<PlayScreenController>(
-          id: 'puzzleImages',
+          id: 'play_game',
           builder: (controller) => Image.asset(
-            PlayScreenController.tableImages[PlayScreenController.imageIndex],
+            DataRes.tableImages[controller.index!],
             scale: 4.5,
           ),
         ),
         SizedBox(height: Get.height * 0.05),
+
+        ///-------------------------------------  Answer Row  -------------------------------------------------///
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Row(
             children: [
               Expanded(
                 child: Container(
-                  height: 45,
+                  height: Get.height * 0.058,
                   padding: const EdgeInsets.only(left: 10),
                   alignment: Alignment.centerLeft,
                   decoration: BoxDecoration(
@@ -99,9 +106,7 @@ Widget playScreenWidget() {
                   ),
                 ),
               ),
-              SizedBox(
-                width: Get.width * 0.03,
-              ),
+              SizedBox(width: Get.width * 0.03),
               GetBuilder<PlayScreenController>(
                 id: "remove",
                 builder: (controller) => InkWell(
@@ -115,8 +120,10 @@ Widget playScreenWidget() {
             ],
           ),
         ),
+
+        ///---------------------------------------------------------0 to 9 Digit--------------------------------------///
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             playScreenCommon("1", 1),
             playScreenCommon("2", 2),
@@ -131,6 +138,8 @@ Widget playScreenWidget() {
           ],
         ),
         SizedBox(height: Get.height * 0.02),
+
+        ///---------------------------------------------Submit Button--------------------------------------------------------------///
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -10,7 +10,7 @@ class AudioController extends GetxController {
 
   Future<void> backGroundSound() async {
     await homePageSong.setAsset(SoundRes.gameBackGround);
-    re
+
     if (homePageSong.playing) {
       homePageSong.stop();
     } else {
@@ -25,7 +25,7 @@ class AudioController extends GetxController {
       win.stop();
     } else {
       win.play();
-      win.setLoopMode(LoopMode.one);
+      win.setLoopMode(LoopMode.off);
     }
   }
 
@@ -41,11 +41,7 @@ class AudioController extends GetxController {
 
   Future<void> tapButtonSound() async {
     await tap.setAsset(SoundRes.tapGameSound);
-    if (tap.playing) {
-      tap.stop();
-    } else {
-      tap.play();
-      tap.setLoopMode(LoopMode.one);
-    }
+    tap.play();
+    //tap.setLoopMode(LoopMode.off);
   }
 }

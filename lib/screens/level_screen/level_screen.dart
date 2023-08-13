@@ -9,8 +9,10 @@ class LevelScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Get.put(LevelController());
+
     return Scaffold(
       body: GetBuilder<LevelController>(
+        id: "GetFunctionUpdate",
         builder: (controller) => controller.lod
             ? levelBg()
             : const Center(

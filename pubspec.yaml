@@ -41,6 +41,9 @@ dependencies:
   unity_ads_plugin:
   just_audio:
   lottie:
+  drop_shadow_image:
+  flutter_animate:
+  progress_state_button:
 
 dev_dependencies:
   flutter_test:

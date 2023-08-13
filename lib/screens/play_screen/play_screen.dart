@@ -4,19 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Playscreen extends StatelessWidget {
-<<<<<<< Updated upstream
-  int? index;
-  Playscreen({super.key,this.index});
-=======
-  // int index;
-  Playscreen({super.key});
->>>>>>> Stashed changes
+  final int? index;
+  const Playscreen({super.key, this.index});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(PlayScreenController());
+    Get.put(PlayScreenController(index ?? 0));
     return Scaffold(
-      body: playScreenWidget(),
+      body: playScreenWidget(context),
     );
   }
 }

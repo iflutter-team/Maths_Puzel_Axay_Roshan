@@ -35,15 +35,16 @@ class AdManager {
 
   static Future<void> showRewardedAd() async {
     UnityAds.showVideoAd(
-        placementId: 'Rewarded_Android',
-        onStart: (placementId) => print('Video Ad $placementId started'),
-        onClick: (placementId) => print('Video Ad $placementId click'),
-        onSkipped: (placementId) => print('Video Ad $placementId skipped'),
-        onComplete: (placementId) async {
-          await loadUnityRewardedAd();
-        },
-        onFailed: (placementId, error, message) async {
-          await loadUnityRewardedAd();
-        });
+      placementId: 'Rewarded_Android',
+      onStart: (placementId) => print('Video Ad $placementId started'),
+      onClick: (placementId) => print('Video Ad $placementId click'),
+      onSkipped: (placementId) => print('Video Ad $placementId skipped'),
+      onComplete: (placementId) async {
+        await loadUnityRewardedAd();
+      },
+      onFailed: (placementId, error, message) async {
+        await loadUnityRewardedAd();
+      },
+    );
   }
 }

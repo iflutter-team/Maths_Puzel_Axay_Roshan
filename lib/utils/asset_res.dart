@@ -1,5 +1,12 @@
 class AssertRes {
-  static const backGroundImage = "asserts/images/download.jpg";
+  static const backGroundImage =
+      "asserts/images/WhatsApp Image 2023-07-10 at 10.58.00 AM.jpeg";
+  static const levelBackGroundImage =
+      "asserts/images/WhatsApp Image 2023-07-10 at 1.33.15 PM.jpeg";
+  static const playBackGroundImage =
+      "asserts/images/WhatsApp Image 2023-07-10 at 1.42.21 PM.jpeg";
+  static const winnerBackGroundImage =
+      "asserts/images/9fa6f630-80ab-4617-8d2c-1a672c9edd51.jpg";
   static const mathTextImage = "asserts/images/math.png";
   static const startTextImage = "asserts/images/start.png";
   static const puzzleTextImage = "asserts/images/p.png";
@@ -9,7 +16,7 @@ class AssertRes {
   static const pImage = "asserts/images/p.png";
   static const boxOpen = "asserts/images/box-open.png";
   static const boxClose = "asserts/images/box-close.png";
-  static const spleshScreenImage = "asserts/images/img_1.png";
+  static const spleshScreenImage = "asserts/images/img_2.png";
   static const nextImage = "asserts/images/next.png";
   static const backImage = "asserts/images/back.png";
   static const levelImage = "asserts/images/name.png";
@@ -95,4 +102,5 @@ class AssertRes {
   static const puzzel73Image = "asserts/images/73.png";
   static const puzzel74Image = "asserts/images/74.png";
   static const puzzel75Image = "asserts/images/75.png";
+  static const bannerImage = "asserts/images/banner.png";
 }
